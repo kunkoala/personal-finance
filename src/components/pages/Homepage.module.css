@@ -1,0 +1,15 @@
+.homepage-header {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.homepage-header h2 {
+  margin: 0.5rem 0;
+}
+
+.home {
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+}

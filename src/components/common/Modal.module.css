@@ -1,0 +1,21 @@
+dialog.dialog-modal {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .dialog-content {
+    padding: 20px;
+  }
+  
+  .dialog-close {
+    float: right;
+    font-size: 1.2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
