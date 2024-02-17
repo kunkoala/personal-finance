@@ -7,19 +7,25 @@ import Footer from "../layout/Footer";
 
 function Homepage() {
   return (
-    <div className={styles.home}>
-      <NavScrollExample />
-      <Stack>
+    <Stack>
+      <div className={styles.home}>
         <div className={styles.homepage}>
-          <header className={styles["homepage-header"]}>
-            <h2>Welcome to Your Personal Finance Tracker</h2>
+          <h2>Welcome to Your Personal Finance Tracker</h2>
+          <div>
+            <p>
+              Track your income and expenses to help you understand your
+              spending habits.
+            </p>
+          </div>
+          <div>
             <p>Get a quick overview of your finances at a glance.</p>
-          </header>
+          </div>
+          <div className={styles.login}>
+            <div>Login Here</div>
+          </div>
         </div>
-        <DashboardSummary />
-      </Stack>
-      <Footer />
-    </div>
+      </div>
+    </Stack>
   );
 }
 

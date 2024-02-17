@@ -1,50 +1,56 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import styles from './NavbarScroll.module.css';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import { Link, NavLink } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import styles from "./NavbarScroll.module.css";
 
 function NavScrollExample() {
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "Login", path: "/login" },
+    { label: "Register", path: "/register" },
+    { label: "Dashboard", path: "/dashboard" },
+  ];
   return (
-    <Navbar expand="lg" className={styles.navbar}>
-      <Container fluid>
-        <Navbar.Brand href="/">BaeAku</Navbar.Brand>
+    <Navbar expand="lg" className={styles.navbar} data-bs-theme="dark">
+      <Container>
+        <Navbar.Brand href="/">
+          <img
+            alt=""
+            src={require("../common/img/logo512.png")}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{" "}
+          BaeAku Financial
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown> */}
-            <Nav.Link href="#" disabled>
-              Dashboard
-            </Nav.Link>
+        <Navbar.Collapse id="navbarScroll" className="justify-content-end">
+          <Nav style={{ maxHeight: "100px" }} navbarScroll className="navbar">
+            {navItems.map((item, index) => (
+              <Nav.Link
+                key={index}
+                as={NavLink}
+                to={item.path}
+                className={styles.navlink}
+              >
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navlink} ${styles.activeNavlink}`
+                      : styles.navlink
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </Nav.Link>
+            ))}
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import ButtonCustom from "../../common/Button";
+import Alert from "react-bootstrap/Alert"; // For showing alert messages
 
 function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
   const [category, setCategory] = useState("");
@@ -11,12 +12,7 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
   const [value, setValue] = useState(0);
   const [typeChanged, setTypeChanged] = useState(false); // New state to track type changes
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Set default date to today
-
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     onFormSubmit(type, parseFloat(value));
-  //     onRequestClose();
-  //   };
+  const [error, setError] = useState(""); // State to manage error messages
 
   const filteredCategories = summary
     .filter((item) => item.type === type)
@@ -40,6 +36,16 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
     e.preventDefault();
     // if new category, use newCategory, else use existing category
     const selectedCategory = isNewCategory ? newCategory : category;
+    if (!selectedCategory) {
+        setError("Category cannot be empty.");
+        return
+    } // if no category selected, do nothing
+    if (value <= 0) {
+        setError("Amount must be greater than 0.");
+        return;
+    }
+
+    setError(""); // Clear error message
     onFormSubmit(selectedCategory, parseFloat(value), type, date);
     onRequestClose();
     // reset form
@@ -56,7 +62,12 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Label>Type</Form.Label>
-        <Form.Select value={type} onChange={handleTypeChange} aria-label="Type">
+        <Form.Select
+          value={type}
+          required
+          onChange={handleTypeChange}
+          aria-label="Type"
+        >
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </Form.Select>
@@ -74,7 +85,9 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
           <Form.Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
+            <option value="">Select Category</option>
             {filteredCategories.length > 0 ? (
               filteredCategories.map((category, index) => (
                 <option key={index} value={category}>
@@ -93,6 +106,7 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
             type="text"
             placeholder="Enter new category name"
             value={newCategory}
+            required
             onChange={(e) => setNewCategory(e.target.value)}
           />
         </Form.Group>
@@ -110,11 +124,14 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
           aria-describedby="basic-addon2"
           type="number"
           value={value}
+          required
           onChange={(e) => setValue(e.target.value)}
           min="0"
           step="0.01"
         />
       </InputGroup>
+
+      {error && <Alert variant="danger">{error}</Alert>}
 
       <ButtonCustom variant="primary" type="submit">
         Submit

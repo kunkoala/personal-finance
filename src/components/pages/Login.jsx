@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import ButtonCustom from "../common/Button";
 import styles from "./Login.module.css";
-import NavbarBrand from "../layout/NavbarBrand";
+import { Icon } from "@iconify/react";
 
 function Login() {
   // state of email and password
@@ -17,21 +17,27 @@ function Login() {
 
   return (
     <>
-      <NavbarBrand />
-      <div className={styles.loginContainer}>
+      <section className={styles.loginContainer}>
         <Form onSubmit={handleSubmit} className={styles.loginForm}>
-          <Form.Label>
-            <h2 className={styles.formHeading}>Login</h2>
-          </Form.Label>
+          <div className={styles.formHeading}>
+            <Form.Label>
+              <h2>Login</h2>
+            </Form.Label>
+          </div>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className={styles.formLabel}>Email address</Form.Label>
-            <Form.Control
-              className={styles.formControl}
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <InputGroup>
+              <InputGroup.Text>
+                <Icon icon="bi:lock" />
+              </InputGroup.Text>
+              <Form.Control
+                className={styles.formControl}
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </InputGroup>
             <Form.Text className={styles.formText}>
               We'll never share your email with anyone else.
             </Form.Text>
@@ -39,30 +45,34 @@ function Login() {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className={styles.formLabel}>Password</Form.Label>
-            <Form.Control
-              className={styles.formControl}
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <InputGroup>
+              <InputGroup.Text>
+                <Icon icon="bi:lock" />
+              </InputGroup.Text>
+              <Form.Control
+                className={styles.formControl}
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </InputGroup>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <ButtonCustom
-            className={styles.submitButton}
-            variant="primary"
-            type="submit"
-          >
-            Submit
-          </ButtonCustom>
+          <div className={styles.submitDiv}>
+            <ButtonCustom
+              className={styles.submitButton}
+              variant="primary"
+              type="submit"
+            >
+              Login
+            </ButtonCustom>
+          </div>
 
           <Form.Text className={styles.formText}>
             Don't have an account? <a href="/register">Register</a>
           </Form.Text>
         </Form>
-      </div>
+      </section>
     </>
   );
 }

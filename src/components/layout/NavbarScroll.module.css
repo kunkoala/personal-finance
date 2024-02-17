@@ -1,3 +1,19 @@
 .navbar {
-    background-color: white;
+  background-color: #211951;
+  color: rgb(226, 221, 221);
+}
+
+.navlink {
+  color: rgb(226, 221, 221);
+  text-decoration: none;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+.activeNavlink {
+  font-weight: bold; /* Make the active link bold */
+  background-color: white; /* Change background to white for the active link */
+  color: black; /* Change text color for better contrast against the white background */
+  border-radius: 5px; /* Optional: Adds rounded corners to the active link */
+  padding: 5px 10px; /* Optional: Adds some padding around the active link */
 }

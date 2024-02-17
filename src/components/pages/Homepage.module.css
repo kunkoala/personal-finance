@@ -1,16 +1,36 @@
-.homepage-header {
-  padding: 5rem;
-  background-color: #33363a;
-  color: rgb(255, 255, 255);
-  text-align: center;
-}
-
-.homepage-header h2 {
-  margin: 0.5rem 0;
-}
-
 .home {
-    flex-direction: column;
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #836FFF; /* Light grey background for a soft look */
+}
+
+.homepage {
+  text-align: center;
+  padding: 20px;
+  background-color: #F0F3FF; /* White background for the content area */
+  border-radius: 8px; /* Rounded corners for the content box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Limit content width for better readability */
+}
+
+.login {
+    color: #ffffff;
     text-align: center;
+    padding: 20px;
+    background-color: #15F5BA; /* White background for the content area */
+    border-radius: 8px; /* Rounded corners for the content box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+.homepage h2 {
+  color: #636c75; /* Bootstrap primary color for the heading */
+  margin-bottom: 20px; /* Spacing below the heading */
+}
+
+.homepage p {
+  color: #6c757d; /* Bootstrap secondary text color for a softer look */
+  line-height: 1.6; /* Increased line-height for better readability */
+  margin-bottom: 15px; /* Spacing between paragraphs */
 }
