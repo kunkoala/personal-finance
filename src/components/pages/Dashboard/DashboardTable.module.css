@@ -9,8 +9,11 @@
 
 .table-header {
   color: #dbdbdb; /* Use a color that matches your theme */
-  margin-top: 30px; /* Space between header and table */
-  margin-bottom: 10px; /* Space between header and table */
   font-size: 24px; /* Larger font size for visibility */
+  margin: 0;
   text-align: center; /* Align to the left or center based on preference */
+}
+
+.Dropdown {
+    padding: 20px;
 }
