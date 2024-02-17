@@ -8,6 +8,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 20px 0 20px 0;
 }
 
 .Button:hover {

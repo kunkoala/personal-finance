@@ -1,0 +1,13 @@
+.dashboard {
+  padding: 20px;
+  background-color: #383838; /* Light background for the dashboard area */
+  min-height: 100vh; /* Full height */
+  box-sizing: border-box;
+}
+
+.dashboard-h2 {
+  color: #ffffff; /* Dark grey color for headings */
+  text-align: center;
+  margin-bottom: 30px; /* Space below the heading */
+}
+

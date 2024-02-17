@@ -4,7 +4,7 @@ import styles from './Button.module.css'
 
 function ButtonCustom({ children, variant, type, onClick, className }) {
   return (
-    <Button className={className} variant={variant} type={type} onClick={onClick}>
+    <Button className={styles.Button} variant={variant} type={type} onClick={onClick}>
       {children}
     </Button>
   );

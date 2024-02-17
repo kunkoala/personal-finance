@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "./TotalAmount.module.css";
 
-function TotalAmount({ amount }) {
+function TotalAmount({ amount, expense_type }) {
   return (
-    <div>
-      <strong>Total Amount: €{amount.toFixed(2)}</strong>
+    <div className={styles.totalAmountContainer}>
+      <strong>Total {expense_type}: €{amount.toFixed(2)}</strong>
     </div>
   );
 }

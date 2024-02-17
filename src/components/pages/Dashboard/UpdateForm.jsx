@@ -10,6 +10,7 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
   const [type, setType] = useState("income");
   const [value, setValue] = useState(0);
   const [typeChanged, setTypeChanged] = useState(false); // New state to track type changes
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Set default date to today
 
   //   const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -39,7 +40,7 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
     e.preventDefault();
     // if new category, use newCategory, else use existing category
     const selectedCategory = isNewCategory ? newCategory : category;
-    onFormSubmit(selectedCategory, parseFloat(value), type);
+    onFormSubmit(selectedCategory, parseFloat(value), type, date);
     onRequestClose();
     // reset form
     e.target.reset();
@@ -59,6 +60,14 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </Form.Select>
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Date</Form.Label>
+        <Form.Control
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
       </Form.Group>
       {!isNewCategory ? (
         <Form.Group className="mb-3">
@@ -94,7 +103,7 @@ function UpdateForm({ onFormSubmit, onRequestClose, summary }) {
       </ButtonCustom>
 
       <InputGroup className="mb-3">
-        <InputGroup.Text>$</InputGroup.Text>
+        <InputGroup.Text>€</InputGroup.Text>
         <Form.Control
           placeholder="Enter amount"
           aria-label="Amount (to the nearest dollar)"

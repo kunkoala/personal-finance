@@ -3,11 +3,9 @@ import DialogModal from "../../common/Modal";
 import UpdateForm from "./UpdateForm";
 import ButtonCustom from "../../common/Button";
 import DashboardTable from "./DashboardTable";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import styles from "./DashboardSummary.module.css";
 
 function DashboardSummary() {
   // Placeholder data
@@ -19,13 +17,37 @@ function DashboardSummary() {
 
   const [showModal, setShowModal] = useState(false);
   const [summary, setSummary] = useState([
-    { id: 0, category: "Wage", type: "income", amount: 0 },
-    { id: 1, category: "Monthly Shopping", type: "expense", amount: 0 },
-    { id: 2, category: "Rent", type: "expense", amount: 200 },
-    { id: 3, category: "Business", type: "income", amount: 0 },
+    {
+      id: 0,
+      category: "Wage",
+      type: "income",
+      amount: 0,
+      date: new Date().toISOString().split("T")[0],
+    },
+    {
+      id: 1,
+      category: "Monthly Shopping",
+      type: "expense",
+      amount: 0,
+      date: new Date().toISOString().split("T")[0],
+    },
+    {
+      id: 2,
+      category: "Rent",
+      type: "expense",
+      amount: 200,
+      date: new Date().toISOString().split("T")[0],
+    },
+    {
+      id: 3,
+      category: "Business",
+      type: "income",
+      amount: 0,
+      date: new Date().toISOString().split("T")[0],
+    },
   ]);
 
-  const updateSummary = (category, amount, type) => {
+  const updateSummary = (category, amount, type, date) => {
     setSummary((prevItems) => {
       const existingItemIndex = prevItems.findIndex(
         (item) => item.category === category && item.type === type
@@ -34,14 +56,14 @@ function DashboardSummary() {
         // if category exists, update amount
         return prevItems.map((item) =>
           item.category === category && item.type === type
-            ? { ...item, amount: item.amount + amount }
+            ? { ...item, amount: item.amount + amount, date }
             : item
         );
       } else {
         // add new category
         return [
           ...prevItems,
-          { id: prevItems.length + 1, category, type, amount },
+          { id: prevItems.length + 1, category, type, amount, date },
         ];
       }
     });
@@ -50,15 +72,14 @@ function DashboardSummary() {
   // const existingCategoryNames = summary.map((item) => item.category);
 
   return (
-    <div>
-      <h2>Dashboard Summary</h2>
+    <div className={styles.dashboard}>
+      <h2 className={styles["dashboard-h2"]}>Dashboard Summary</h2>
 
       <DialogModal
         modalTitle="Update Summary"
         isOpen={showModal}
         onClose={() => setShowModal(false)}
       >
-        <h2>Update Balance</h2>
         <UpdateForm
           onFormSubmit={updateSummary}
           summary={summary}
@@ -66,14 +87,18 @@ function DashboardSummary() {
         />
       </DialogModal>
 
-      <Tabs>
-        <Tab eventKey="Income" title="Income">
-          <DashboardTable summaryData={summary} type="income" />
-        </Tab>
-        <Tab eventKey="Expense" title="Expenses">
-          <DashboardTable summaryData={summary} type="expense" />
-        </Tab>
-      </Tabs>
+      <div>
+        <DashboardTable
+          classname={styles.table}
+          summaryData={summary}
+          type="income"
+        />
+        <DashboardTable
+          classname={styles.table}
+          summaryData={summary}
+          type="expense"
+        />
+      </div>
 
       <ButtonCustom onClick={() => setShowModal(true)}>
         Update Summary

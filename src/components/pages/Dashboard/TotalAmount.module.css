@@ -1,0 +1,9 @@
+.totalAmountContainer {
+  padding: 10px 15px;
+  background-color: #3b3e41; /* Bootstrap primary color */
+  color: #ffffff; /* White color for text */
+  text-align: center; /* Center-align the text */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 18px; /* Slightly larger font size for emphasis */
+}

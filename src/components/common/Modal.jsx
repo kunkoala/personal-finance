@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import styles from "./Modal.module.css";
 
 function DialogModal({ modalTitle, isOpen, onClose, children }) {
   // prevent closing on click inside the dialog
