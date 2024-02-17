@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import Button from "react-bootstrap/Button";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 
 function DialogModal({ modalTitle, isOpen, onClose, children }) {

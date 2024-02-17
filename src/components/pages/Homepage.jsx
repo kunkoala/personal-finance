@@ -1,9 +1,6 @@
 import React from "react";
-import NavScrollExample from "../layout/NavbarScroll";
-import DashboardSummary from "./Dashboard/DashboardSummary";
 import { Stack } from "react-bootstrap";
 import styles from "./Homepage.module.css";
-import Footer from "../layout/Footer";
 
 function Homepage() {
   return (

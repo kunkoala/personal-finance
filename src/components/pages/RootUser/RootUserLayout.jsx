@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NavbarBrand from "../../layout/NavbarBrand";
 import NavScrollExample from "../../layout/NavbarScroll";
 import Footer from "../../layout/Footer";
 

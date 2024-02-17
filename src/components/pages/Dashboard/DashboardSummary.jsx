@@ -3,8 +3,6 @@ import DialogModal from "../../common/Modal";
 import UpdateForm from "./UpdateForm";
 import ButtonCustom from "../../common/Button";
 import DashboardTable from "./DashboardTable";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 import styles from "./DashboardSummary.module.css";
 
 function DashboardSummary() {
