@@ -14,6 +14,10 @@ This is a personal project for managing personal finances. It provides features 
 ## Features
 - Expense tracking: Keep track of your expenses and categorize them for better analysis.
 - Budgeting: Set monthly budgets for different expense categories and monitor your spending.
+
+## TODOS
+- Login Screen
+- Personalized Finance Analysis
 - Financial goals: Set financial goals and track your progress towards achieving them.
 - Reports and analysis: Generate reports and visualizations to gain insights into your financial habits.
 
