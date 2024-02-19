@@ -1,4 +1,5 @@
 # Personal Finance
+Personal project for managing personal finances with React and Firebase.
 
 ## Description
 This is a personal project for managing personal finances. It provides features such as expense tracking, budgeting, and financial goal setting.
