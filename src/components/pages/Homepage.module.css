@@ -1,36 +1,43 @@
+@import '../styles/variables.module.css';
+
+
+/* The .home class centers its children both vertically and horizontally and gives them a light grey background. */
 .home {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #836FFF; /* Light grey background for a soft look */
 }
 
+/* The .homepage class styles the content area with a white background, rounded corners, and a subtle shadow. */
 .homepage {
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* The .login class styles the login area with a specific background color, rounded corners, and a subtle shadow. */
+.login {
+  color: #ffffff;
   text-align: center;
   padding: 20px;
-  background-color: #F0F3FF; /* White background for the content area */
-  border-radius: 8px; /* Rounded corners for the content box */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  max-width: 600px; /* Limit content width for better readability */
+  background-color: var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.login {
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    background-color: #15F5BA; /* White background for the content area */
-    border-radius: 8px; /* Rounded corners for the content box */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-
+/* The .homepage h2 class styles the heading with the Bootstrap primary color and adds spacing below the heading. */
 .homepage h2 {
-  color: #636c75; /* Bootstrap primary color for the heading */
-  margin-bottom: 20px; /* Spacing below the heading */
+  color: var(--bootstrap-primary);
+  margin-bottom: 20px;
 }
 
+/* The .homepage p class styles the paragraphs with the Bootstrap secondary color, increases the line-height for better readability, and adds spacing between paragraphs. */
 .homepage p {
-  color: #6c757d; /* Bootstrap secondary text color for a softer look */
-  line-height: 1.6; /* Increased line-height for better readability */
-  margin-bottom: 15px; /* Spacing between paragraphs */
+  color: var(--bootstrap-secondary);
+  line-height: 1.6;
+  margin-bottom: 15px;
 }

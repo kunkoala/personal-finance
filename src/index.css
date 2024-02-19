@@ -1,6 +1,9 @@
+@import './components/styles/variables.module.css';
+
 body {
     margin: 0;
     font-family: Inter;
+    background-color: var(--light-grey);
   }
 
 main {

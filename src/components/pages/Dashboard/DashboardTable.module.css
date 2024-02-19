@@ -1,7 +1,9 @@
+@import "../../styles/variables.module.css";
+
 .table-container {
   margin-bottom: 0; /* Space between tables */
   padding: 20px; /* Padding around the table for spacing */
-  background-color: #fff; /* Light background for contrast with dark tables */
+  background-color: #7c7474; /* Light background for contrast with dark tables */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   border-radius: 8px; /* Rounded corners for a modern look */
   text-align: left;
@@ -15,5 +17,17 @@
 }
 
 .Dropdown {
-    padding: 20px;
+  padding: 20px;
+}
+
+.tableTitleContainerIncome {
+  background-color: #4e7442;
+  align-items: center;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.tableTitleContainerExpense {
+  background-color: #ad4747;
+  align-items: center;
+  border-radius: 15px 15px 0px 0px;
 }

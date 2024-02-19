@@ -4,43 +4,44 @@ import UpdateForm from "./UpdateForm";
 import ButtonCustom from "../../common/Button";
 import DashboardTable from "./DashboardTable";
 import styles from "./DashboardSummary.module.css";
+import { Container, Row, Col } from "react-bootstrap";
+import IncomeExpenseChart from "./visualization/IncomeExpenseChart";
 
+/**
+ * Renders the Dashboard Summary component.
+ *
+ * @component
+ * @returns {JSX.Element} The JSX element representing the Dashboard Summary component.
+ */
 function DashboardSummary() {
-  // Placeholder data
-  // const summary = {
-  //   totalIncome: 1000,
-  //   totalExpense: 700,
-  //   balance: 300,
-  // };
-
   const [showModal, setShowModal] = useState(false);
   const [summary, setSummary] = useState([
     {
       id: 0,
       category: "Wage",
       type: "income",
-      amount: 0,
+      amount: 500,
       date: new Date().toISOString().split("T")[0],
     },
     {
       id: 1,
       category: "Monthly Shopping",
       type: "expense",
-      amount: 0,
+      amount: 200,
       date: new Date().toISOString().split("T")[0],
     },
     {
       id: 2,
       category: "Rent",
       type: "expense",
-      amount: 200,
+      amount: 450,
       date: new Date().toISOString().split("T")[0],
     },
     {
       id: 3,
       category: "Business",
       type: "income",
-      amount: 0,
+      amount: 1025.99,
       date: new Date().toISOString().split("T")[0],
     },
   ]);
@@ -82,25 +83,36 @@ function DashboardSummary() {
           onFormSubmit={updateSummary}
           summary={summary}
           onRequestClose={() => setShowModal(false)}
+          setSummary={setSummary}
         />
       </DialogModal>
 
-      <div>
-        <DashboardTable
-          classname={styles.table}
-          summaryData={summary}
-          type="income"
-        />
-        <DashboardTable
-          classname={styles.table}
-          summaryData={summary}
-          type="expense"
-        />
-      </div>
+      <IncomeExpenseChart dataToPlot={summary} />
 
-      <ButtonCustom onClick={() => setShowModal(true)}>
-        Update Summary
-      </ButtonCustom>
+      <Container>
+        <Row>
+          <Col>
+            <DashboardTable
+              classname={styles.table}
+              summaryData={summary}
+              type="income"
+            />
+          </Col>
+          <Col>
+            <DashboardTable
+              classname={styles.table}
+              summaryData={summary}
+              type="expense"
+            />
+          </Col>
+        </Row>
+      </Container>
+
+      <div className={styles.updateDashboard}>
+        <ButtonCustom onClick={() => setShowModal(true)}>
+          Add Transaction
+        </ButtonCustom>
+      </div>
     </div>
   );
 }

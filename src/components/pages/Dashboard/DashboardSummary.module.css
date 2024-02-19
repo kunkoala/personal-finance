@@ -1,6 +1,8 @@
+@import '../../styles/variables.module.css';
+
 .dashboard {
   padding: 20px;
-  background-color: #383838; /* Light background for the dashboard area */
+  background-color: var(--light-grey); /* Light background for the dashboard area */
   min-height: 100vh; /* Full height */
   box-sizing: border-box;
 }
@@ -9,5 +11,13 @@
   color: #ffffff; /* Dark grey color for headings */
   text-align: center;
   margin-bottom: 30px; /* Space below the heading */
+}
+
+.updateDashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px; /* Space below the updateDashboard area */
 }
 

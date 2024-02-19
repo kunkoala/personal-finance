@@ -1,63 +1,56 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import TotalAmount from "./TotalAmount";
-import styles from "./DashboardTable.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton } from "react-bootstrap";
+import styles from "./DashboardTable.module.css";
+import TotalAmount from "./TotalAmount";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-// create dashboard table component with summarydata from props
-function DashboardTable({ summaryData, type }) {
+// Assuming summaryData is an array of objects { id, category, amount, date, type }
+const DashboardTable = ({ summaryData, type }) => {
   const [sortType, setSortType] = useState("date");
-  const [data, setData] = useState([]);
+  const [filteredSortedData, setFilteredSortedData] = useState([]);
 
   useEffect(() => {
-    // initially sort data or re-sort when data changes
-    const filteredItems = summaryData.filter((item) => item.type === type);
-    handleSort(sortType, filteredItems);
-  }, [summaryData, type, sortType]);
-
-  // Sort by date
-  const sortByDate = (data) => {
-    return [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
-  };
-
-  // Sort by category alphabetically
-  const sortByCategory = (data) => {
-    return [...data].sort((a, b) => a.category.localeCompare(b.category));
-  };
-
-  // Sort by amount (ascending order)
-  const sortByAmount = (data) => {
-    return [...data].sort((a, b) => a.amount - b.amount);
-  };
-
-  const handleSort = (type, items) => {
-    setSortType(type);
-    let sortedData;
-    switch (type) {
+    let filteredData = summaryData.filter((item) => item.type === type);
+    switch (sortType) {
       case "date":
-        sortedData = sortByDate(items);
+        filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
         break;
       case "category":
-        sortedData = sortByCategory(items);
+        filteredData.sort((a, b) => a.category.localeCompare(b.category));
         break;
       case "amount":
-        sortedData = sortByAmount(items);
+        filteredData.sort((a, b) => a.amount - b.amount);
         break;
       default:
-        sortedData = [...items];
+        // No default sorting necessary
+        break;
     }
-    setData(sortedData);
+    setFilteredSortedData(filteredData);
+  }, [summaryData, type, sortType]);
+
+  const handleSortSelection = (eventKey) => {
+    setSortType(eventKey);
   };
-  const totalAmount = data.reduce((acc, item) => acc + item.amount, 0);
+
+  const totalAmount = filteredSortedData.reduce(
+    (acc, item) => acc + item.amount,
+    0
+  );
+
+  const tableTitleStyle =
+    type === 'income'
+      ? styles.tableTitleContainerIncome
+      : styles.tableTitleContainerExpense;
+
   return (
     <>
-      <Container>
+      <Container className={tableTitleStyle}>
         <Row className="justify-content-md-center align-items-center">
-          <Col md={{ span: 4, offset: 4 }}>
+          <Col>
             <h2 className={styles["table-header"]}>
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </h2>
@@ -65,18 +58,10 @@ function DashboardTable({ summaryData, type }) {
           <Col>
             <DropdownButton
               className={styles.Dropdown}
-              id="dropdown-basic-button"
               title={`Sort by ${
-                sortType
-                  ? sortType.charAt(0).toUpperCase() + sortType.slice(1)
-                  : "Date"
+                sortType.charAt(0).toUpperCase() + sortType.slice(1)
               }`}
-              onSelect={(eventKey) =>
-                handleSort(
-                  eventKey,
-                  summaryData.filter((item) => item.type === type)
-                )
-              }
+              onSelect={handleSortSelection}
             >
               <Dropdown.Item eventKey="date">Date</Dropdown.Item>
               <Dropdown.Item eventKey="category">Category</Dropdown.Item>
@@ -95,16 +80,16 @@ function DashboardTable({ summaryData, type }) {
         <thead>
           <tr>
             <th>Category</th>
-            <th>Amount (€)</th>
+            <th>Amount</th>
             <th>Date</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {filteredSortedData.map((item) => (
             <tr key={item.id}>
               <td>{item.category}</td>
               <td>{item.amount}</td>
-              <td>{item.date}</td>
+              <td>{new Date(item.date).toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
@@ -112,6 +97,6 @@ function DashboardTable({ summaryData, type }) {
       <TotalAmount amount={totalAmount} expense_type={type} />
     </>
   );
-}
+};
 
 export default DashboardTable;
